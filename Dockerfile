@@ -16,6 +16,6 @@ WORKDIR /testing-service
 
 COPY --from=build /build/target/*.jar testing-service.jar
 
-EXPOSE 8053
+EXPOSE 9999
 
 ENTRYPOINT ["java", "-jar", "testing-service.jar"]
