@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testing-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testing-service
+  template:
+    metadata:
+      labels:
+        app: testing-service
+    spec:
+      containers:
+        - name: testing-service
+          image: us-central1-docker.pkg.dev/tejalf-project/tejalf-repo/testing-service:latest
+          ports:
+            - containerPort: 9999
