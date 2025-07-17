@@ -72,10 +72,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.addEndpoint(STOMP_ENDPOINT) // Native WS
                 .setAllowedOriginPatterns("http://localhost:3000");
 
-      /*  registry.addEndpoint(STOMP_ENDPOINT) // SockJS fallback
+        registry.addEndpoint(STOMP_ENDPOINT) // SockJS fallback
                 .setAllowedOriginPatterns("http://localhost:3000")
                 .withSockJS();
-   */
+
     }
 
     /**
