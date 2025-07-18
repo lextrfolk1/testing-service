@@ -1,0 +1,37 @@
+#Command : gcloud builds submit --config cloudbuild-deployment.yaml --substitutions _SERVICE_NAME=testing-service
+
+# substitutions:
+#   _SERVICE_NAME: "testing-service"
+
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/tejalf-project/tejalf-repo/${_SERVICE_NAME}:latest', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/tejalf-project/tejalf-repo/${_SERVICE_NAME}:latest']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud container clusters get-credentials my-cluster-name \
+        --region us-central1 \
+        --project tejalf-project
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['delete', 'deployment', '${_SERVICE_NAME}']
+    ignoreExitStatus: true
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['delete', 'service', '${_SERVICE_NAME}']
+    ignoreExitStatus: true
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['apply', '-f', 'deployment.yaml']
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['apply', '-f', 'service.yml']
+
+images:
+  - 'us-central1-docker.pkg.dev/tejalf-project/tejalf-repo/${_SERVICE_NAME}:latest'
