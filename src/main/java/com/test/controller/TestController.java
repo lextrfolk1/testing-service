@@ -25,7 +25,7 @@ public class TestController {
 
     @GetMapping("/health")
     public String healthCheck() {
-        return "<html><body><div style='text-align:center;'><h2 style='color:green;'>Service is up and running!</h2></div></body></html>";
+        return testService.healthCheck();
     }
 
 
