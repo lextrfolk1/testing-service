@@ -70,7 +70,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
 
         registry.addEndpoint(STOMP_ENDPOINT) // SockJS fallback
-                .setAllowedOriginPatterns("http://localhost:3000")
+                .setAllowedOriginPatterns("*")
                 .withSockJS();
 
     }
