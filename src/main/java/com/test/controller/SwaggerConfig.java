@@ -11,7 +11,7 @@ import java.util.List;
 @Configuration
 public class SwaggerConfig {
 
-    @Value("${swagger.server-url:/proxy}")
+    @Value("${swagger.server-url:/}")
     private String swaggerServerUrl;
 
     @Bean
