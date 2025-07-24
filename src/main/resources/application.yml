@@ -3,3 +3,6 @@ server:
 spring:
   application:
     name: testing-service
+
+springdoc:
+  override-with-gateway-url: true
