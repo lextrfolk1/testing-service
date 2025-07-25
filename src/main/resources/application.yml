@@ -1,8 +1,12 @@
 server:
   port: 9999
+  forward-headers-strategy: framework
 spring:
   application:
     name: testing-service
 
+
 springdoc:
   override-with-gateway-url: true
+  swagger-ui:
+    path: /swagger-ui.html

@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-@Configuration
+//@Configuration
 public class SwaggerConfig {
 
-    @Bean
+  //  @Bean
     public OpenApiCustomizer openApiCustomiser(HttpServletRequest request) {
         return openApi -> {
             String prefix = request.getHeader("X-Forwarded-Prefix");
